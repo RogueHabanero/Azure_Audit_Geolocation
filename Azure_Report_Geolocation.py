@@ -8,13 +8,11 @@ from tkinter import filedialog as fd
 
 API_URL = "http://api.ipstack.com/"
 API_ACCESS_KEY_EXTRAS = "?access_key="
-
 try:
     API_KEY = os.getenv("IPSTACK_KEY")
 except:
     print("You must add an environment variable with your API access key with name IPSTACK_KEY")
     print("Please refer to your OS documentation on adding the environment variable")
-API_ACCESS_KEY_EXTRAS = "?access_key="
 
 
 def get_file():
