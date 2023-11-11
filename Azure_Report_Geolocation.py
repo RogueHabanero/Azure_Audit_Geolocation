@@ -9,7 +9,6 @@ from tkinter import filedialog as fd
 API_URL = "http://api.ipstack.com/"
 API_ACCESS_KEY_EXTRAS = "?access_key="
 
-
 try:
     API_KEY = os.getenv("IPSTACK_KEY")
 except:
@@ -20,9 +19,8 @@ API_ACCESS_KEY_EXTRAS = "?access_key="
 
 def get_file():
     extension_csv = False
-    while(extension_csv == False):
+    while(extension_csv == False):     #forces the use of .csv files
         filename = fd.askopenfilename()
-        print(filename) #debug
         if filename.lower().endswith('.csv'):
             extension_csv = True
     return filename
@@ -50,11 +48,13 @@ def write_new_file(array_of_lines):
 
 def main():
     filename = get_file()
+
+    #used for debugging purposes
     count = 0
     geostore_access = 0
     ipstack_access = 0
-    geolocation_store = {}
 
+    geolocation_store = {} #empty dictionary, will store the IP's that have been looked up for reference later'
     array_of_lines = [] #hold the
 
     with open(filename, 'r') as csv_file:
@@ -85,8 +85,9 @@ def main():
 
     print(f"There were {ipstack_access} calls to IP Stack")
     print(f"There were {geostore_access} calls to the local geolocation_store")
-    print(f"The total between the is {geostore_access + ipstack_access}, which should match the total which is {count}")
+    print(f"The total between the is {geostore_access + ipstack_access}, which should match the total: {count}")
 
     write_new_file(array_of_lines)
 
-main()
+if __name__ == "__main__":
+    main()
