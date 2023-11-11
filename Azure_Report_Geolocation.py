@@ -7,6 +7,8 @@ from tkinter import filedialog as fd
 
 
 API_URL = "http://api.ipstack.com/"
+API_ACCESS_KEY_EXTRAS = "?access_key="
+
 
 try:
     API_KEY = os.getenv("IPSTACK_KEY")
