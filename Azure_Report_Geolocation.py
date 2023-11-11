@@ -86,6 +86,7 @@ def main():
     print(f"There were {ipstack_access} calls to IP Stack")
     print(f"There were {geostore_access} calls to the local geolocation_store")
     print(f"The total between the is {geostore_access + ipstack_access}, which should match the total which is {count}")
+
     write_new_file(array_of_lines)
 
 main()
