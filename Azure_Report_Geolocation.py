@@ -16,11 +16,9 @@ except:
 
 
 def get_file():
-    extension_csv = False
-    while(extension_csv == False):     #forces the use of .csv files
+    filename = fd.askopenfilename()
+    if not filename.lower().endswith('.csv'):
         filename = fd.askopenfilename()
-        if filename.lower().endswith('.csv'):
-            extension_csv = True
     return filename
 
 
@@ -70,11 +68,11 @@ def main():
             line_dict = {'CreationTime': Creation_Time, 'UserId': User_Id, 'Operation': operation, 'IP_Address': IP_Address}
 
             if IP_Address in geolocation_store:
-                location = geolocation_store[IP_Address]
+                location = geolocation_store[IP_Address] #retreive geolocation from memory
                 geostore_access += 1
             else:
-                location = get_ipstack_geolocation(IP_Address)
-                geolocation_store[IP_Address] = location
+                location = get_ipstack_geolocation(IP_Address) #retreive geolocation from IPStack.com
+                geolocation_store[IP_Address] = location #add geolocation to memory
                 ipstack_access += 1
 
             line_dict.update(location)
