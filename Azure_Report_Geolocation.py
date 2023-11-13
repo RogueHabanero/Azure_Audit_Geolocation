@@ -5,6 +5,7 @@ import requests
 from requests.exceptions import HTTPError
 from tkinter import filedialog as fd
 
+USER_AGENT = {'User-Agent': "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0"}
 
 API_URL = "http://api.ipstack.com/"
 API_ACCESS_KEY_EXTRAS = "?access_key="
@@ -23,8 +24,10 @@ def get_file():
 
 
 def get_ipstack_geolocation(IP_Address):
+
     full_url = API_URL + IP_Address + API_ACCESS_KEY_EXTRAS + API_KEY
-    response = requests.get(full_url)
+
+    response = requests.get(full_url, headers=USER_AGENT)
     response.raise_for_status()
     json_response = response.json()
     continent = json_response["continent_name"]
@@ -78,6 +81,9 @@ def main():
             line_dict.update(location)
             array_of_lines.append(line_dict)
             count += 1
+
+            if (count >= 400):
+                break
 
     print(f"There were {ipstack_access} calls to IP Stack")
     print(f"There were {geostore_access} calls to the local geolocation_store")
