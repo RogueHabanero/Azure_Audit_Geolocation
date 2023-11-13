@@ -6,7 +6,6 @@ from requests.exceptions import HTTPError
 from tkinter import filedialog as fd
 
 USER_AGENT = {'User-Agent': "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/119.0"}
-
 API_URL = "http://api.ipstack.com/"
 API_ACCESS_KEY_EXTRAS = "?access_key="
 try:
@@ -82,8 +81,8 @@ def main():
             array_of_lines.append(line_dict)
             count += 1
 
-            if (count >= 400):
-                break
+           #if (count >= 400):  #used for limiting the number of rows for testing
+            #    break
 
     print(f"There were {ipstack_access} calls to IP Stack")
     print(f"There were {geostore_access} calls to the local geolocation_store")
